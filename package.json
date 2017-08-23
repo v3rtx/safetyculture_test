@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,9 @@
   },
   "homepage": "https://github.com/v3rtx/safetyculture_test#readme",
   "devDependencies": {
-    "jasmine": "^2.7.0",
-    "karma": "^1.7.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.0"
+    "jasmine": "2.7.0",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.0"
   }
 }

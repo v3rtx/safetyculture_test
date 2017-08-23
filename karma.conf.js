@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js',
+      'src/traffic_lights_controller.js',
       'tests/*.js'
     ],
 
@@ -65,6 +65,11 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    // Silent tests console output for clear view of the tests
+    client: {
+      captureConsole: false
+    }
   })
 }
