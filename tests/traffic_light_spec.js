@@ -60,7 +60,7 @@ describe('TrafficLight', function() {
       createTrafficLigtControllerAndSimulate(0, 5);
       expect(tl.currentTime).toEqual(5*60);
       let outputs = [
-        'Time: 4.5m 30s. Switching North and South from green to yellow.',
+        'Time: 4m 30s. Switching North and South from green to yellow.',
         'Time: 5m 0s. Switching East and West from red to green.',
         'Time: 5m 0s. Switching North and South from yellow to red.'
       ];

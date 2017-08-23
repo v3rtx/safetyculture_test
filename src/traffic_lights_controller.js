@@ -1,4 +1,6 @@
 class TrafficLightsController {
+  get maxValue() { return 1000000000 }
+
   get GREEN() { return 'green' }
   get YELLOW() { return 'yellow' }
   get RED() {return 'red'}
@@ -8,13 +10,12 @@ class TrafficLightsController {
   get YELLOW_INTERVAL() { return 0.5 * this.SECONDS_IN_MINUTE }
   get GREEN_INTERVAL() { return this.RED_INTERVAL - this.YELLOW_INTERVAL }
 
-  isNonNegativeInteger (integer){
-    return Number.isInteger(integer) && integer >= 0 && integer <= 1000000000
-  }
+  get currentMinutes() { return Math.floor(this.currentTime / this.SECONDS_IN_MINUTE) }
+  get currentSeconds() { return this.currentTime % this.SECONDS_IN_MINUTE }
 
   constructor (startTime = 0, length = 30) {
     if (!this.isNonNegativeInteger(startTime) || !this.isNonNegativeInteger(length)){
-      throw new RangeError("Start time and length must be in interval from 0 to 1000000000");
+      throw new RangeError("Start time and length must be in interval from 0 to " + this.maxValue);
     }
 
     // store currentTime and endTime as seconds
@@ -30,32 +31,43 @@ class TrafficLightsController {
     this.nextInterval = this.GREEN_INTERVAL;
   }
 
+  isNonNegativeInteger (integer){
+    return Number.isInteger(integer) && integer >= 0 && integer <= this.maxValue
+  }
+
   writeIntro () {
     console.log(`This is the traffic light simulation programm.
     Starting from:
-      Start time: ${this.startTime / this.SECONDS_IN_MINUTE} minutes
-      End time: ${this.endTime / this.SECONDS_IN_MINUTE} minutes
+      Start time: ${this.currentMinutes} minutes
+      End time: ${Math.floor(this.endTime / this.SECONDS_IN_MINUTE)} minutes
       Nort and South traffic lights just switched to Greeen
       East and West traffic lights just switched to Red`);
   }
 
-
   simulate () {
-    this.writeIntro()
-    while (this.currentTime + this.nextInterval <= this.endTime) {
-      this.currentTime += this.nextInterval
-      if (this.isYellowOn) {
-        this.isYellowOn = false;
-        this.nextInterval = this.GREEN_INTERVAL;
-        this.switchLight(this.RED, this.GREEN);
-        this.switchLight(this.YELLOW, this.RED);
-      }
-      else {
-        this.isYellowOn = true;
-        this.nextInterval = this.YELLOW_INTERVAL;
-        this.switchLight(this.GREEN, this.YELLOW);
-      }
+    this.writeIntro();
+    while (this.iterate());
+  }
+
+  iterate () {
+    if (this.currentTime + this.nextInterval > this.endTime)
+      return false;
+
+    this.currentTime += this.nextInterval;
+
+    if (this.isYellowOn) {
+      this.isYellowOn = false;
+      this.nextInterval = this.GREEN_INTERVAL;
+      this.switchLight(this.RED, this.GREEN);
+      this.switchLight(this.YELLOW, this.RED);
     }
+    else {
+      this.isYellowOn = true;
+      this.nextInterval = this.YELLOW_INTERVAL;
+      this.switchLight(this.GREEN, this.YELLOW);
+    }
+
+    return true;
   }
 
   switchLight (fromLight, toLight) {
@@ -71,7 +83,7 @@ class TrafficLightsController {
 
   // TODO: change if we will switch not 2 directions at once
   writeSwitchInfo (directionsToSwitch, fromLight, toLight) {
-    console.log(`Time: ${this.currentTime / this.SECONDS_IN_MINUTE}m ${this.currentTime % this.SECONDS_IN_MINUTE}s.`+
+    console.log(`Time: ${this.currentMinutes}m ${this.currentSeconds}s.`+
       ` Switching ${directionsToSwitch[0]} and ${directionsToSwitch[1]} from ${fromLight} to ${toLight}.`);
   }
 };

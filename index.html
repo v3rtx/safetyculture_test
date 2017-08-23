@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src='src/traffic_lights_controller.js'></script>
+  <link rel="stylesheet" href="stylesheets/main.css"></link>
+</head>
+<body>
+  <div class='canvas'>
+    <div class='road'></div>
+    <div class='road-horizontal'></div>
+    <div class='traffic-light north'>
+      <div class='round red'></div>
+      <div class='round yellow'></div>
+      <div class='round green'></div>
+      <div class='rod'></div>
+    </div>
+
+    <div class='traffic-light east'>
+      <div class='round red'></div>
+      <div class='round yellow'></div>
+      <div class='round green'></div>
+      <div class='rod'></div>
+    </div>
+
+    <div class='traffic-light south'>
+      <div class='round red'></div>
+      <div class='round yellow'></div>
+      <div class='round green'></div>
+      <div class='rod'></div>
+    </div>
+
+    <div class='traffic-light west'>
+      <div class='round red'></div>
+      <div class='round yellow'></div>
+      <div class='round green'></div>
+      <div class='rod'></div>
+    </div>
+  </div>
+  <div class='controls'>
+    <label for='duration'>Input duration</label>
+    <br />
+    <input id='duration' type='number' min='0' max='1000000000'/>
+    <button onclick="start()">Start</button>
+    <br />
+    <label id='time'></label>
+    <br />
+    <button onclick="iterate()" disabled id='iterate'>Iterate</button>
+  </div>
+  <script src='src/draw_traffic_lights.js'></script>
+</body>
+</html>

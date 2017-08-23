@@ -21,3 +21,5 @@ npm test
 ```
 npm run
 ```
+## Bonus:
+Open index.html
