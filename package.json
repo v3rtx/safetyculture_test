@@ -1,0 +1,25 @@
+{
+  "name": "safetyculture_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v3rtx/safetyculture_test.git"
+  },
+  "author": "v3rtx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/v3rtx/safetyculture_test/issues"
+  },
+  "homepage": "https://github.com/v3rtx/safetyculture_test#readme",
+  "devDependencies": {
+    "jasmine": "^2.7.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0"
+  }
+}
