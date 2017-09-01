@@ -6,9 +6,9 @@ Gooogle Chrome v.60
 ## How to setup environment:
 1. clone this repository
 ```
-git clone git@github.com:v3rtx/safetyculture_test.git
+git clone git@github.com:v3rtx/traffic_lights.git
 ```
-2. move to the cloned directory `cd safetyculture_test`
+2. move to the cloned directory `cd traffic_lights`
 3. install nodejs https://nodejs.org/en/download/package-manager/
 4. run `npm install`
 
